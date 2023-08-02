@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
-
-const connection = new Sequelize("guiapress", "root", "longaoh123", {
+require("dotenv").config();
+const pass = process.env.PASS_MYSQL;
+const connection = new Sequelize("guiapress", "root", pass, {
   host: "localhost",
   dialect: "mysql",
   timezone: "-03:00",
