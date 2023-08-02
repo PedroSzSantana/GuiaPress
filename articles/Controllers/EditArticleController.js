@@ -3,10 +3,10 @@ const EditArticleRouter = Router();
 
 const Category = require("../../categories/ModelCategory");
 const Article = require("../ModelArticles");
-
+const auth = require("../../middleware/auth");
 const slugify = require("slugify");
 
-EditArticleRouter.get("/admin/articles/edit/:id", async (req, res) => {
+EditArticleRouter.get("/admin/articles/edit/:id", auth, async (req, res) => {
   const id = req.params.id;
   console.log(id);
   try {
@@ -20,7 +20,7 @@ EditArticleRouter.get("/admin/articles/edit/:id", async (req, res) => {
     console.log(error);
   }
 });
-EditArticleRouter.get("/articles/edit", async (req, res) => {
+EditArticleRouter.get("/articles/edit", auth, async (req, res) => {
   const { id, title, content, category } = req.body;
   try {
     await Article.update(

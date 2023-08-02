@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const Category = require("./ModelCategory");
 const CategoriesRoutes = Router();
+const auth = require("../middleware/auth");
 
 const {
   EditCategoryRouter,
@@ -8,7 +9,7 @@ const {
   NewCategoryRouter,
 } = require("./Controllers");
 
-CategoriesRoutes.get("/admin/categories", async (req, res) => {
+CategoriesRoutes.get("/admin/categories", auth, async (req, res) => {
   try {
     const categories = await Category.findAll();
     res.render("admin/categories/index", { categories });

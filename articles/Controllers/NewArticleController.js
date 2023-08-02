@@ -3,10 +3,11 @@ const NewArticleRouter = Router();
 
 const Category = require("../../categories/ModelCategory");
 const Article = require("../ModelArticles");
+const auth = require("../../middleware/auth");
 
 const slugify = require("slugify");
 
-NewArticleRouter.get("/admin/articles/new", async (req, res) => {
+NewArticleRouter.get("/admin/articles/new", auth, async (req, res) => {
   try {
     const categories = await Category.findAll();
     res.render("admin/articles/new", { categories });

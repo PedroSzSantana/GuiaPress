@@ -3,6 +3,7 @@ const ArticlesRoutes = Router();
 
 const Article = require("./ModelArticles");
 const Category = require("../categories/ModelCategory");
+const auth = require("../middleware/auth");
 
 const {
   EditArticleRouter,
@@ -10,7 +11,7 @@ const {
   NewArticleRouter,
 } = require("./Controllers");
 
-ArticlesRoutes.get("/admin/articles", async (req, res) => {
+ArticlesRoutes.get("/admin/articles", auth, async (req, res) => {
   try {
     const articles = await Article.findAll({
       include: [{ model: Category }],

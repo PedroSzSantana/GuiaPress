@@ -25,6 +25,10 @@ IndexRouter.get("/:slug", async (req, res) => {
         slug,
       },
     });
+    if (!article) {
+      res.redirect("/");
+    }
+    console.log("fweeeeeeeeeeeee", article);
     const categories = await Category.findAll();
     res.render("article", { article, categories });
   } catch (error) {

@@ -2,7 +2,9 @@ const { Router } = require("express");
 const User = require("../ModelUser");
 const CreateUserRouter = Router();
 const bcrypt = require("bcrypt");
-CreateUserRouter.get("/admin/users/create", (req, res) => {
+const auth = require("../../middleware/auth");
+
+CreateUserRouter.get("/admin/users/create", auth, (req, res) => {
   res.render("admin/users/create");
 });
 CreateUserRouter.post("/users/create", async (req, res) => {

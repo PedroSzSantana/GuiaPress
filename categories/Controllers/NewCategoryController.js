@@ -2,8 +2,9 @@ const { Router } = require("express");
 const Category = require("../ModelCategory");
 const NewCategoryRouter = Router();
 const slugify = require("slugify");
+const auth = require("../../middleware/auth");
 
-NewCategoryRouter.get("/admin/categories/new", (req, res) => {
+NewCategoryRouter.get("/admin/categories/new", auth, (req, res) => {
   res.render("admin/categories/new");
 });
 

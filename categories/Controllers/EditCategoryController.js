@@ -2,8 +2,9 @@ const { Router } = require("express");
 const Category = require("../ModelCategory");
 const EditCategoryRouter = Router();
 const slugify = require("slugify");
+const auth = require("../../middleware/auth");
 
-EditCategoryRouter.get("/admin/categories/edit/:id", async (req, res) => {
+EditCategoryRouter.get("/admin/categories/edit/:id", auth, async (req, res) => {
   const id = req.params.id;
   try {
     const category = await Category.findByPk(id);
