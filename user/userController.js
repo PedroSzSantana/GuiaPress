@@ -2,6 +2,7 @@ const { Router } = require("express");
 const User = require("./ModelUser");
 const UserRoutes = Router();
 const CreateUserRouter = require("./controller/CreateUser");
+const LoginUserRouter = require("./controller/LoginUser");
 
 UserRoutes.get("/admin/users", async (req, res) => {
   const users = await User.findAll();
@@ -9,5 +10,5 @@ UserRoutes.get("/admin/users", async (req, res) => {
 });
 
 UserRoutes.use(CreateUserRouter);
-
+UserRoutes.use(LoginUserRouter);
 module.exports = UserRoutes;
